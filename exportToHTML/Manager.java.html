@@ -1,0 +1,166 @@
+<html>
+<head>
+<title>Manager.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #f97bb0; font-weight: bold;}
+.s1 { color: #dfdfe0;}
+.s2 { color: #ff806c;}
+.s3 { color: #d7c781;}
+</style>
+</head>
+<body bgcolor="#292a30">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Manager.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">javafx.scene.layout.AnchorPane;</span>
+
+<span class="s0">import </span><span class="s1">java.util.ArrayList;</span>
+<span class="s0">import </span><span class="s1">java.util.Scanner;</span>
+
+<span class="s0">public class </span><span class="s1">Manager </span><span class="s0">implements </span><span class="s1">AnimalInterface {</span>
+    <span class="s0">private </span><span class="s1">ArrayList&lt;Animal&gt; animals;</span>
+    <span class="s0">private final </span><span class="s1">Scanner scanner = </span><span class="s0">new </span><span class="s1">Scanner(System.in);</span>
+
+    <span class="s0">public </span><span class="s1">Manager() {</span>
+        <span class="s0">this</span><span class="s1">.animals = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;();</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">displayAll() {</span>
+        <span class="s0">for </span><span class="s1">(Animal animal : animals) {</span>
+            <span class="s1">System.out.println(animal);</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">addAnimal(Animal animal) {</span>
+        <span class="s1">animals.add(animal);</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">Animal deleteByName(String name) {</span>
+        <span class="s1">Animal animal = </span><span class="s0">null</span><span class="s1">;</span>
+        <span class="s0">for </span><span class="s1">(Animal animal1 : animals) {</span>
+            <span class="s0">if </span><span class="s1">(animal1.getName().equals(name)) {</span>
+                <span class="s1">animal = animal1;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s1">animals.remove(animal);</span>
+        <span class="s0">return </span><span class="s1">animal;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">Animal displayByName(String name) {</span>
+        <span class="s0">for </span><span class="s1">(Animal animal : animals) {</span>
+            <span class="s0">if </span><span class="s1">(animal.getName().equals(name)) {</span>
+                <span class="s0">return </span><span class="s1">animal;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return null</span><span class="s1">;</span>
+
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">Animal updateByName(String name) {</span>
+        <span class="s1">Animal animalUpdate = </span><span class="s0">null</span><span class="s1">;</span>
+        <span class="s1">Cat catUpdate = </span><span class="s0">null</span><span class="s1">;</span>
+        <span class="s1">Dog dogUpdate = </span><span class="s0">null</span><span class="s1">;</span>
+        <span class="s1">Mouse mouseUpdate = </span><span class="s0">null</span><span class="s1">;</span>
+
+        <span class="s0">for </span><span class="s1">(Animal animal : animals) {</span>
+            <span class="s0">if </span><span class="s1">(animal.getName() == name &amp;&amp; animal </span><span class="s0">instanceof </span><span class="s1">Cat &amp;&amp; animal </span><span class="s0">instanceof </span><span class="s1">Dog &amp;&amp; animal </span><span class="s0">instanceof </span><span class="s1">Mouse) {</span>
+                <span class="s1">catUpdate = (Cat) animal;</span>
+                <span class="s1">dogUpdate = (Dog) animal;</span>
+                <span class="s1">mouseUpdate = (Mouse) animal;</span>
+                <span class="s1">}</span><span class="s0">else if </span><span class="s1">(animal.getName() == name) {</span>
+                <span class="s1">animalUpdate = animal;</span>
+            <span class="s1">}</span>
+            <span class="s0">if </span><span class="s1">(animalUpdate != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tên mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">name = scanner.nextLine();</span>
+                <span class="s0">if </span><span class="s1">(name.equals(</span><span class="s2">&quot;&quot;</span><span class="s1">)) {</span>
+                    <span class="s1">animalUpdate.setName(animalUpdate.getName());</span>
+                <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                    <span class="s1">animalUpdate.setName(name);</span>
+                    <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tuổi mới: &quot;</span><span class="s1">);</span>
+                    <span class="s1">animalUpdate.setAge(scanner.nextInt());</span>
+                    <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập cân nặng mới: &quot;</span><span class="s1">);</span>
+                    <span class="s1">animalUpdate.setWeigh(scanner.nextDouble());</span>
+                    <span class="s1">scanner.nextLine();</span>
+                    <span class="s0">return </span><span class="s1">animalUpdate;</span>
+                <span class="s1">}</span>
+            <span class="s1">} </span><span class="s0">else if </span><span class="s1">(catUpdate != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tên mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">catUpdate.setName(scanner.nextLine());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tuổi mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">catUpdate.setAge(scanner.nextInt());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập vào cân nặng mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">catUpdate.setWeigh(scanner.nextDouble());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Cập nhập trạng thái mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">catUpdate.setHunting(scanner.nextLine());</span>
+                <span class="s1">scanner.nextLine();</span>
+                <span class="s0">return </span><span class="s1">catUpdate;</span>
+            <span class="s1">} </span><span class="s0">else if </span><span class="s1">(dogUpdate != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tên mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">dogUpdate.setName(scanner.nextLine());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tuổi mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">dogUpdate.setAge(scanner.nextInt());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập vào cân nặng mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">dogUpdate.setWeigh(scanner.nextDouble());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Cập nhập trạng thái mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">dogUpdate.setSleep(scanner.nextLine());</span>
+                <span class="s1">scanner.nextLine();</span>
+                <span class="s0">return </span><span class="s1">dogUpdate;</span>
+            <span class="s1">} </span><span class="s0">else if </span><span class="s1">(mouseUpdate != </span><span class="s0">null</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tên mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">mouseUpdate.setName(scanner.nextLine());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tuổi mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">mouseUpdate.setAge(scanner.nextInt());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập vào cân nặng mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">mouseUpdate.setWeigh(scanner.nextDouble());</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Cập nhập trạng thái mới: &quot;</span><span class="s1">);</span>
+                <span class="s1">mouseUpdate.setSpeed(scanner.nextDouble());</span>
+                <span class="s1">scanner.nextLine();</span>
+                <span class="s0">return </span><span class="s1">mouseUpdate;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return null</span><span class="s1">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">Animal createAnimal(Scanner scanner, </span><span class="s0">int </span><span class="s1">choice) {</span>
+        <span class="s1">scanner.nextLine();</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập vào tên: &quot;</span><span class="s1">);</span>
+        <span class="s1">String name = scanner.nextLine();</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập vào tuổi: &quot;</span><span class="s1">);</span>
+        <span class="s0">int </span><span class="s1">age = scanner.nextInt();</span>
+        <span class="s0">double </span><span class="s1">weigh = scanner.nextDouble();</span>
+        <span class="s1">scanner.nextLine();</span>
+        <span class="s0">if </span><span class="s1">(choice == </span><span class="s3">1</span><span class="s1">) {</span>
+            <span class="s0">return new </span><span class="s1">Animal(name, age, weigh);</span>
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(choice == </span><span class="s3">2</span><span class="s1">) {</span>
+            <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập vào con mồi: &quot;</span><span class="s1">);</span>
+            <span class="s1">String hunting = scanner.nextLine();</span>
+            <span class="s0">return new </span><span class="s1">Cat(name, age, weigh, hunting);</span>
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(choice == </span><span class="s3">3</span><span class="s1">) {</span>
+            <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tư thế ngủ: &quot;</span><span class="s1">);</span>
+            <span class="s1">String sleep = scanner.nextLine();</span>
+            <span class="s0">return new </span><span class="s1">Dog(name, age, weigh, sleep);</span>
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(choice == </span><span class="s3">4</span><span class="s1">) {</span>
+            <span class="s1">System.out.println(</span><span class="s2">&quot;Nhập tốc độ: &quot;</span><span class="s1">);</span>
+            <span class="s0">double </span><span class="s1">speed = scanner.nextDouble();</span>
+            <span class="s0">return new </span><span class="s1">Mouse(name, age, weigh, speed);</span>
+        <span class="s1">}</span>
+        <span class="s0">return null</span><span class="s1">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">run() {</span>
+        <span class="s0">return </span><span class="s1">run();</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String makeSound() {</span>
+        <span class="s0">return </span><span class="s1">makeSound();</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
